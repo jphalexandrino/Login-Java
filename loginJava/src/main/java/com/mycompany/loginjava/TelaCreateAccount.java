@@ -44,6 +44,7 @@ public class TelaCreateAccount extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jButtonLogin = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jTextFieldPassword = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -52,6 +53,7 @@ public class TelaCreateAccount extends javax.swing.JInternalFrame {
         jButtonLogin1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldUsername = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         jButtonLogin.setText("Login");
         jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +61,8 @@ public class TelaCreateAccount extends javax.swing.JInternalFrame {
                 jButtonLoginActionPerformed(evt);
             }
         });
+
+        jLabel5.setText("Caso não tenha conta ainda, crie uma pelo menu \"login\".");
 
         jTextFieldPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +98,8 @@ public class TelaCreateAccount extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel6.setText("Caso tenha conta, entre pelo menu \"login\".");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,7 +117,11 @@ public class TelaCreateAccount extends javax.swing.JInternalFrame {
                             .addComponent(jTextFieldUser)
                             .addComponent(jTextFieldUsername)))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 147, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addContainerGap(162, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +141,9 @@ public class TelaCreateAccount extends javax.swing.JInternalFrame {
                 .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonLogin1)
-                .addGap(0, 45, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addContainerGap())
         );
 
         pack();
@@ -207,6 +219,8 @@ public class TelaCreateAccount extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTextFieldPassword;
     private javax.swing.JTextField jTextFieldUser;
     private javax.swing.JTextField jTextFieldUsername;

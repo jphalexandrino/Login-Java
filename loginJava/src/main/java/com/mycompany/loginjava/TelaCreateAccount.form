@@ -10,6 +10,11 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLoginActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Caso n&#xe3;o tenha conta ainda, crie uma pelo menu &quot;login&quot;."/>
+      </Properties>
+    </Component>
   </NonVisualComponents>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -45,7 +50,12 @@
                   </Group>
                   <Component id="jLabel1" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="147" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="162" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,7 +77,9 @@
               <Component id="jTextFieldPassword" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButtonLogin1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="45" max="32767" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -118,6 +130,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldUsernameActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Caso tenha conta, entre pelo menu &quot;login&quot;."/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
