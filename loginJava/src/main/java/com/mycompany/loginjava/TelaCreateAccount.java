@@ -4,8 +4,13 @@
  */
 package com.mycompany.loginjava;
 
+import static com.mycompany.loginjava.TelaLogin.conecta;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,19 +24,22 @@ public class TelaCreateAccount extends javax.swing.JInternalFrame {
     public TelaCreateAccount() {
         initComponents();
     }
-    
-        public static Connection conecta(){
-        Connection c = null;
+
+    public static Connection conecta() throws SQLException {
         try {
             Class.forName("org.postgresql.Driver");
             String url = "jdbc:postgresql://localhost:5432/postgres";
             String user = "postgres";
             String password = "feevale";
-            c = DriverManager.getConnection(url, user, password);   
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            return DriverManager.getConnection(url, user, password);
+        } catch (ClassNotFoundException e) {
+            System.out.println("Driver PostgreSQL não encontrado.");
+            e.printStackTrace();
+            return null;
+        } catch (SQLException e) {
+            System.out.println("Erro ao conectar ao banco de dados: " + e.getMessage());
+            throw e; // Lança a exceção para o código chamador
         }
-        return c;
     }
 
     /**
@@ -50,7 +58,7 @@ public class TelaCreateAccount extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldUser = new javax.swing.JTextField();
-        jButtonLogin1 = new javax.swing.JButton();
+        jButtonCreateAccount = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldUsername = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -63,6 +71,11 @@ public class TelaCreateAccount extends javax.swing.JInternalFrame {
         });
 
         jLabel5.setText("Caso não tenha conta ainda, crie uma pelo menu \"login\".");
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         jTextFieldPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,10 +96,10 @@ public class TelaCreateAccount extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonLogin1.setText("Criar conta");
-        jButtonLogin1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCreateAccount.setText("Criar conta");
+        jButtonCreateAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLogin1ActionPerformed(evt);
+                jButtonCreateAccountActionPerformed(evt);
             }
         });
 
@@ -112,7 +125,7 @@ public class TelaCreateAccount extends javax.swing.JInternalFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
-                            .addComponent(jButtonLogin1)
+                            .addComponent(jButtonCreateAccount)
                             .addComponent(jTextFieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
                             .addComponent(jTextFieldUser)
                             .addComponent(jTextFieldUsername)))
@@ -140,7 +153,7 @@ public class TelaCreateAccount extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonLogin1)
+                .addComponent(jButtonCreateAccount)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addContainerGap())
@@ -159,53 +172,65 @@ public class TelaCreateAccount extends javax.swing.JInternalFrame {
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         // Estabelecer a conexão com o banco, Validar as credenciais, Mandar para outra aba.
-        try {
-            Connection c = conecta();
-            // Remover após finalizado:
-            System.out.println("Nome inserido: " + jTextFieldUser.getText());
-            System.out.println("Senha inserida: " + jTextFieldPassword.getText());
-            System.out.println("\n------------------");
-
-            // Variaveis do usuário
-            String User;
-            String Password;
-            User = jTextFieldUser.getText();
-            Password = jTextFieldPassword.getText();
-
-            // Remover após finalizado:
-            System.out.println("Valor da variavel User: " + User);
-            System.out.println("Valor da variavel Password: " + Password);
-
-        } catch (Exception e) {
-        }
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
-    private void jButtonLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogin1ActionPerformed
+    private void jButtonCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateAccountActionPerformed
         // Estabelecer a conexão com o banco, Validar as credenciais, Mandar para outra aba.
-        try {
-            Connection c = conecta();
-            // Remover após finalizado:
-            System.out.println("Nome inserido: " + jTextFieldUsername.getText());            
-            System.out.println("Nome de usuário inserido: " + jTextFieldUser.getText());
-            System.out.println("Senha inserida: " + jTextFieldPassword.getText());
-            System.out.println("\n------------------");
+        // Remover após finalizado:
+        System.out.println("Nome de usuário inserido: " + jTextFieldUser.getText());
+        System.out.println("Senha inserida: " + jTextFieldPassword.getText());
+        System.out.println("Nome inserido: " + jTextFieldUsername.getText());
+        System.out.println("\n------------------");
 
-            // Variaveis do usuário
-            String Username;
-            String User;
-            String Password;
-            Username = jTextFieldUsername.getText();
-            User = jTextFieldUser.getText();
-            Password = jTextFieldPassword.getText();
+        // Variáveis do usuário
+        String user = jTextFieldUser.getText();
+        String password = jTextFieldPassword.getText();
+        String username = jTextFieldUsername.getText();
 
-            // Remover após finalizado:
-            System.out.println("Valor da variavel Username: " + Username);
-            System.out.println("Valor da variavel User: " + User);
-            System.out.println("Valor da variavel Password: " + Password);
+        // Remover após finalizado:
+        System.out.println("Valor da variável User: " + user);
+        System.out.println("Valor da variável Password: " + password);
+        System.out.println("Valor da variável Username: " + username);
 
-        } catch (Exception e) {
+        try ( Connection c = conecta()) {
+            if (c == null) {
+                System.out.println("Erro: Conexão com o banco de dados falhou.");
+                return; // Interrompe o código se a conexão for nula
+            }
+            System.out.println("\n✅ | Banco de dados conectado com sucesso!");
+
+            // Criar tabela se não existir
+            String comandoCreateTable = "CREATE TABLE IF NOT EXISTS users_exists ("
+                    + "id serial PRIMARY KEY, "
+                    + "user varchar(30) NOT NULL, "
+                    + "username varchar(60) NOT NULL, "
+                    + "password varchar(60) NOT NULL)";
+            try ( Statement stmtCreate = c.createStatement()) {
+                stmtCreate.execute(comandoCreateTable);
+                System.out.println("\n✅ | Tabela verificada/criada com sucesso!");
+            } catch (SQLException e) {
+                System.out.println("Erro ao criar/verificar a tabela: " + e.getMessage());
+                return;
+            }
+
+            // Inserir dados do usuário na tabela
+            String comandoInsert = "INSERT INTO users_exists (user, username, password) VALUES (?, ?, ?)";
+            try ( PreparedStatement stmtInsert = c.prepareStatement(comandoInsert)) {
+                stmtInsert.setString(1, user);
+                stmtInsert.setString(2, username);
+                stmtInsert.setString(3, password);
+                stmtInsert.executeUpdate();
+                System.out.println("\n✅ | Usuário cadastrado com sucesso!");
+            } catch (SQLException e) {
+                System.out.println("Erro ao inserir dados na tabela: " + e.getMessage());
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao tentar se conectar ou manipular o banco de dados: " + e.getMessage());
         }
-    }//GEN-LAST:event_jButtonLogin1ActionPerformed
+
+
+    }//GEN-LAST:event_jButtonCreateAccountActionPerformed
 
     private void jTextFieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsernameActionPerformed
         // TODO add your handling code here:
@@ -213,8 +238,8 @@ public class TelaCreateAccount extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCreateAccount;
     private javax.swing.JButton jButtonLogin;
-    private javax.swing.JButton jButtonLogin1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

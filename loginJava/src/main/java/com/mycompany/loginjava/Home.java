@@ -108,21 +108,21 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-        
+
 
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // Além disso deve ser feito a conexão com o banco de dados para poder validar o usuário.
         // Aqui quando o usuário clikar deve ser criado uma tela pedindo as credenciais de login.
-         TelaLogin t;
+        TelaLogin t;
         t = new TelaLogin();
         area.add(t);
         t.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-       TelaCreateAccount t;
+        TelaCreateAccount t;
         t = new TelaCreateAccount();
         area.add(t);
         t.setVisible(true);

@@ -16,6 +16,12 @@
       </Properties>
     </Component>
   </NonVisualComponents>
+  <Properties>
+    <Property name="closable" type="boolean" value="true"/>
+    <Property name="iconifiable" type="boolean" value="true"/>
+    <Property name="maximizable" type="boolean" value="true"/>
+    <Property name="resizable" type="boolean" value="true"/>
+  </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -42,7 +48,7 @@
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonLogin1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonCreateAccount" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldPassword" alignment="0" pref="131" max="32767" attributes="0"/>
                           <Component id="jTextFieldUser" alignment="0" max="32767" attributes="0"/>
                           <Component id="jTextFieldUsername" alignment="0" max="32767" attributes="0"/>
@@ -76,7 +82,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTextFieldPassword" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButtonLogin1" min="-2" max="-2" attributes="0"/>
+              <Component id="jButtonCreateAccount" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="23" max="32767" attributes="0"/>
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -113,12 +119,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldUserActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonLogin1">
+    <Component class="javax.swing.JButton" name="jButtonCreateAccount">
       <Properties>
         <Property name="text" type="java.lang.String" value="Criar conta"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLogin1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCreateAccountActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">

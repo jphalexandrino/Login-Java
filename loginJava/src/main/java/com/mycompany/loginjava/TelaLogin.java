@@ -2,12 +2,13 @@ package com.mycompany.loginjava;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-
 /**
  *
  * @author 0403207
@@ -20,21 +21,20 @@ public class TelaLogin extends javax.swing.JInternalFrame {
     public TelaLogin() {
         initComponents();
     }
-    
-    public static Connection conecta(){
+
+    public static Connection conecta() {
         Connection c = null;
         try {
             Class.forName("org.postgresql.Driver");
             String url = "jdbc:postgresql://localhost:5432/postgres";
             String user = "postgres";
             String password = "feevale";
-            c = DriverManager.getConnection(url, user, password);   
+            c = DriverManager.getConnection(url, user, password);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return c;
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,6 +52,11 @@ public class TelaLogin extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         jTextFieldUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,24 +138,36 @@ public class TelaLogin extends javax.swing.JInternalFrame {
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         // Estabelecer a conexão com o banco, Validar as credenciais, Mandar para outra aba.
         try {
-            Connection c = conecta();
             // Remover após finalizado:
-            System.out.println("Nome inserido: " + jTextFieldUser.getText());           
+            System.out.println("Nome inserido: " + jTextFieldUser.getText());
             System.out.println("Senha inserida: " + jTextFieldPassword.getText());
             System.out.println("\n------------------");
-            
+
             // Variaveis do usuário
             String User;
             String Password;
             User = jTextFieldUser.getText();
             Password = jTextFieldPassword.getText();
-            
+
             // Remover após finalizado:
-            System.out.println("Valor da variavel User: " + User);            
+            System.out.println("Valor da variavel User: " + User);
             System.out.println("Valor da variavel Password: " + Password);
 
-            
-            
+            Connection c;
+            c = conecta();
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Aviso: Tabela do banco de dados foi criada.");
+            String comando;
+            comando = "CREATE TABLE if not exists users_exists (\r\n"
+                    + "id serial PRIMARY KEY,\r\n"
+                    + "user varchar(30) NOT NULL,\r\n"
+                    + "username varchar(60) NOT NULL,\r\n"
+                    + "password varchar NOT NULL)";
+
+            Statement stmt = c.createStatement();
+            stmt.execute(comando);
+            c.close();
 
         } catch (Exception e) {
         }
